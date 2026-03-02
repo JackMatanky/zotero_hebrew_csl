@@ -30,8 +30,8 @@ At this stage, styles may contain omissions, simplifications, or unresolved edge
 
 These style files are functional drafts under active development. They may not fully conform to official journal guidelines and should be tested before use in formal submissions.
 
-- **Tarbiz** (`tarbiz.csl`)
-- **Zion** (`zion.csl`)
+- [**Tarbiz**](https://jstudies.huji.ac.il/book/%D7%B4%D7%AA%D7%A8%D7%91%D7%99%D7%A5%D7%B4) (`tarbiz.csl`)
+- [**Zion**](https://www.historical.org.il/Magazine/%D7%9B%D7%AA%D7%91-%D7%A2%D7%AA-%D7%A6%D7%99%D7%95%D7%9F/) (`zion.csl`)
 
 ---
 
