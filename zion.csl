@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.0" demote-non-dropping-particle="sort-only">
+  <info>
+    <title>Zion: Quarterly for Research in Jewish History</title>
+    <id>http://www.zotero.org/styles/zion</id>
+    <link href="http://www.zotero.org/styles/zion" rel="self"/>
+    <link href="https://www.shazar.org.il/zion" rel="documentation"/>
+    <author><name>Jack Matanky</name></author>
+    <category citation-format="note"/>
+    <category field="history"/>
+    <updated>2026-03-02T23:59:59+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <locale xml:lang="he">
+    <terms>
+      <term name="ibid">שם</term>
+      <term name="page" form="short">עמ'</term>
+      <term name="editor" form="short">עורך</term>
+      <term name="et-al">ואחרים</term>
+      <term name="and">ו</term>
+      <term name="in">בתוך</term>
+      <term name="note" form="short">הערה</term>
+    </terms>
+  </locale>
+
+  <locale xml:lang="en">
+    <terms>
+      <term name="and">and</term>
+      <term name="page" form="short">
+        <single>p.</single>
+        <multiple>pp.</multiple>
+      </term>
+      <term name="et-al">et al.</term>
+      <term name="note" form="short">n.</term>
+    </terms>
+  </locale>
+
+  <macro name="author-full">
+    <names variable="author">
+      <name delimiter=", " and="text" delimiter-precedes-last="never"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" delimiter=", " and="text" delimiter-precedes-last="never"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="title-logic">
+    <choose>
+      <if type="thesis">
+        <text variable="title" quotes="true"/>
+      </if>
+      <else-if type="book">
+        <choose>
+          <if variable="language" match="all">
+            <text variable="title"/>
+          </if>
+          <else>
+            <text variable="title" font-style="italic"/>
+          </else>
+        </choose>
+      </else-if>
+      <else-if type="article-journal chapter" match="any">
+        <text variable="title" quotes="true"/>
+      </else-if>
+      <else>
+        <text variable="title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="issuance-logic">
+    <group delimiter=" ">
+      <text variable="publisher-place"/>
+      <date variable="issued">
+        <date-part name="year"/>
+      </date>
+      <text variable="edition" vertical-align="sup"/>
+    </group>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1">
+    <layout suffix="." delimiter="; ">
+      <choose>
+        <if position="ibid-with-locator">
+          <group delimiter=", ">
+            <text macro="author-short"/>
+            <text term="ibid"/>
+            <group delimiter=" ">
+              <label variable="locator" form="short"/>
+              <text variable="locator"/>
+            </group>
+          </group>
+        </if>
+        <else-if position="ibid">
+          <group delimiter=" ">
+            <text macro="author-short"/>
+            <text term="ibid"/>
+          </group>
+        </else-if>
+        <else-if position="subsequent">
+          <group delimiter=", ">
+            <text macro="author-short"/>
+            <group>
+              <text value="(לעיל, הערה "/>
+              <text variable="first-reference-note-number"/>
+              <text value=")"/>
+            </group>
+            <group delimiter=" ">
+              <label variable="locator" form="short"/>
+              <text variable="locator"/>
+            </group>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=", ">
+            <text macro="author-full"/>
+            <group delimiter=" ">
+              <text macro="title-logic"/>
+              <text variable="collection-title" prefix="(" suffix=")"/>
+            </group>
+            <choose>
+              <if type="article-journal">
+                <text variable="container-title" font-style="italic"/>
+                <group delimiter=" ">
+                  <text variable="volume"/>
+                  <date variable="issued" prefix="(" suffix=")">
+                    <date-part name="year"/>
+                  </date>
+                </group>
+              </if>
+              <else-if type="chapter">
+                <group delimiter=" ">
+                  <text term="in"/>
+                  <names variable="editor">
+                    <name delimiter=", " and="text" delimiter-precedes-last="never"/>
+                    <label form="short" prefix=" (" suffix=")"/>
+                  </names>
+                </group>
+                <text variable="container-title" font-style="italic"/>
+              </else-if>
+            </choose>
+            <text macro="issuance-logic"/>
+            <group delimiter=" ">
+              <label variable="locator" form="short"/>
+              <text variable="locator"/>
+            </group>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </citation>
+
+  <bibliography hanging-indent="true">
+    <layout suffix=".">
+      <group delimiter=", ">
+        <text macro="author-full"/>
+        <text macro="title-logic"/>
+        <text macro="issuance-logic"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>

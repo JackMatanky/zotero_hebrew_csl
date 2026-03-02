@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.0" demote-non-dropping-particle="sort-only">
+  <info>
+    <title>Tarbiz: Quarterly for Jewish Studies</title>
+    <id>http://www.zotero.org/styles/tarbiz</id>
+    <link href="http://www.zotero.org/styles/tarbiz-huji-2026-v4" rel="self"/>
+    <link href="https://jewish-studies.huji.ac.il/tarbiz" rel="documentation"/>
+    <author><name>Jack Matanky</name></author>
+    <category citation-format="note"/>
+    <category field="humanities"/>
+    <updated>2026-03-02T23:45:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <locale xml:lang="he">
+    <terms>
+      <term name="ibid">שם</term>
+      <term name="page" form="short">עמ'</term>
+      <term name="editor" form="short">עורך</term>
+      <term name="et-al">ואחרים</term>
+      <term name="and">ו</term>
+    </terms>
+  </locale>
+
+  <locale xml:lang="en">
+    <terms>
+      <term name="and">and</term>
+      <term name="page" form="short">p.</term>
+    </terms>
+  </locale>
+
+  <macro name="author-full">
+    <names variable="author">
+      <name delimiter=", " and="text" delimiter-precedes-last="never"/>
+      <label form="short" prefix=" (" suffix=")"/>
+      <substitute>
+        <names variable="editor"/>
+        </substitute>
+    </names>
+  </macro>
+
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" delimiter=", " and="text" delimiter-precedes-last="never"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="title-formatted">
+    <choose>
+      <if type="thesis">
+        <text variable="title" quotes="true"/>
+      </if>
+      <else-if type="book">
+        <choose>
+          <if variable="language" match="any">
+            <choose>
+              <if variable="language" match="any">
+                <choose>
+                  <if variable="language" match="any">
+                    <text variable="title"/>
+                  </if>
+                  <else>
+                    <text variable="title" font-style="italic"/>
+                  </else>
+                </choose>
+              </if>
+            </choose>
+          </if>
+          <else>
+            <text variable="title" font-style="italic"/>
+          </else>
+        </choose>
+      </else-if>
+      <else-if type="article-journal article-magazine article-newspaper chapter paper-conference" match="any">
+        <text variable="title" quotes="true"/>
+      </else-if>
+      <else>
+        <text variable="title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <citation et-al-min="4" et-al-use-first="1">
+    <layout suffix="." delimiter="; ">
+      <choose>
+        <if position="ibid-with-locator">
+          <group delimiter=", ">
+            <text macro="author-short"/>
+            <text term="ibid" prefix="(" suffix=")"/>
+            <group delimiter=" ">
+               <label variable="locator" form="short"/>
+               <text variable="locator"/>
+            </group>
+          </group>
+        </if>
+        <else-if position="ibid">
+          <group delimiter=" ">
+            <text macro="author-short"/>
+            <text term="ibid" prefix="(" suffix=")"/>
+          </group>
+        </else-if>
+        <else-if position="subsequent">
+          <group delimiter=", ">
+            <text macro="author-short"/>
+            <group>
+              <text value="לעיל הערה "/>
+              <text variable="first-reference-note-number"/>
+              <text value=")"/>
+            </group>
+            <group delimiter=" ">
+               <label variable="locator" form="short"/>
+               <text variable="locator"/>
+            </group>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=", ">
+            <text macro="author-full"/>
+            <group delimiter=" ">
+              <text macro="title-formatted"/>
+              <group prefix="(" suffix=")">
+                <text variable="collection-title"/>
+                <text variable="collection-number" prefix=", "/>
+              </group>
+            </group>
+            <choose>
+              <if type="article-journal">
+                <text variable="container-title" font-style="italic"/>
+                <group delimiter=" ">
+                  <text variable="volume"/>
+                  <date variable="issued" prefix="(" suffix=")">
+                    <date-part name="year"/>
+                  </date>
+                </group>
+              </if>
+              <else-if type="chapter paper-conference" match="any">
+                <group delimiter=" ">
+                  <names variable="editor">
+                    <name delimiter=", " and="text" delimiter-precedes-last="never"/>
+                    <label form="short" prefix=" (" suffix=")"/>
+                  </names>
+                </group>
+                <text variable="container-title" font-style="italic"/>
+              </else-if>
+            </choose>
+            <group delimiter=" ">
+              <text variable="publisher-place"/>
+              <date variable="issued">
+                <date-part name="year"/>
+              </date>
+            </group>
+            <group delimiter=" ">
+               <label variable="locator" form="short"/>
+               <text variable="locator"/>
+            </group>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </citation>
+
+  <bibliography hanging-indent="true">
+    <layout suffix=".">
+      <group delimiter=", ">
+        <text macro="author-full"/>
+        <text macro="title-formatted"/>
+        <group delimiter=" ">
+          <text variable="publisher-place"/>
+          <date variable="issued">
+            <date-part name="year"/>
+          </date>
+        </group>
+      </group>
+    </layout>
+  </bibliography>
+</style>
